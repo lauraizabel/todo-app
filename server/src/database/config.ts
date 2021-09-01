@@ -1,16 +1,15 @@
 import { ConnectionOptions } from "typeorm";
 
 const config: ConnectionOptions = {
+  name: "default",
   type: "postgres",
-  host: process.env.PSQL_HOST,
-  port: Number(process.env.PORT_DB),
+  host: process.env.BD_HOST,
+  port: Number(process.env.BD_PORT),
   username: process.env.BD_USERNAME,
   password: process.env.BD_PASSWORD,
-  database: process.env.DB_DATABASE,
-  entities: ["src/entities/**/*.ts"],
-  migrations: ["src/migration/**/*.ts"],
   synchronize: true,
-  name: "default",
+  logging: true,
+  entities: ["src/entity/*.*"],
 };
 
 export default config;
