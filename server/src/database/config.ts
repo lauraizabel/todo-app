@@ -9,6 +9,7 @@ const config: ConnectionOptions = {
   password: process.env.BD_PASSWORD,
   synchronize: true,
   entities: ["src/entities/*.*"],
+  migrations: ["src/migrations/*.*"],
   logging: true,
 };
 

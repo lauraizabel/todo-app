@@ -1,12 +1,11 @@
 import { Router } from "express";
 import isAuthenticated from "../middleware/isAuthenticated";
+import updateUserController from "../useCases/user/UpdateUser";
 
 const router = Router();
 
 router.use(isAuthenticated);
 
-router.get("/testing", (req, res) => {
-  res.json({ message: "Is authenticated :)" });
-});
+router.put("/user", updateUserController.handle);
 
 export default router;

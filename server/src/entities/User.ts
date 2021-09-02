@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Task } from "./Task";
 
 @Entity({ name: "user" })
 export class User {
@@ -25,4 +27,7 @@ export class User {
 
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  @OneToMany(() => Task, () => User)
+  tasks: Task[];
 }

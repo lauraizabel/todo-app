@@ -2,11 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Category } from "./Category";
 import { User } from "./User";
 
 @Entity()
@@ -26,7 +26,9 @@ export class Task {
   @Column()
   done = false;
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  userId: number;
+  @ManyToOne(() => User, () => Task)
+  user: User;
+
+  @ManyToOne(() => Category)
+  category: Category;
 }
