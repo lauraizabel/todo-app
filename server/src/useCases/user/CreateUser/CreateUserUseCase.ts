@@ -13,12 +13,12 @@ export default class CreateUserUseCase {
   ): Promise<void> => {
     const newUser = new User();
 
-    const encryptedPassword = bcrypt.hash(password, 10);
+    const encryptedPassword = await bcrypt.hash(password, 10);
     newUser.email = email;
     newUser.firstName = firstName;
     newUser.lastName = lastName;
     newUser.password = encryptedPassword;
 
-    this.userRepository.createUser(newUser);
+    await this.userRepository.createUser(newUser);
   };
 }

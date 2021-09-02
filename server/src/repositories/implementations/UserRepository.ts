@@ -1,21 +1,28 @@
-import { EntityRepository, Repository } from "typeorm";
+import { EntityRepository, getRepository, Repository } from "typeorm";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
-@EntityRepository(User)
-export default class UserRepository
-  extends Repository<User>
-  implements IUserRepository
-{
+//TODO - Descobrir por que implementar o repositório de usuários dá erro
+export default class UserRepository implements IUserRepository {
+  /*  
+  public userRepository: Repository<User>;
+
+  constructor() {
+    this.userRepository = getRepository(User);
+  }
+  */
   async createUser(user: User): Promise<void> {
-    await this.save(user);
+    try {
+      await getRepository(User).save(user);
+    } catch (error) {
+      throw new Error(error);
+    }
+    //await this.userRepository.save(user);
   }
 
-  async findByEmailAndPassword(
-    email: string,
-    password: string
-  ): Promise<User | null> {
-    const user = await this.findOne({ email, password });
+  async findByEmailAndPassword(email: string): Promise<User | null> {
+    //const user = await this.userRepository.findOne({ email, password });
+    const user = await getRepository(User).findOne({ email });
     return user ? user : null;
   }
 }

@@ -8,8 +8,8 @@ const config: ConnectionOptions = {
   username: process.env.BD_USERNAME,
   password: process.env.BD_PASSWORD,
   synchronize: true,
+  entities: ["src/entities/*.*"],
   logging: true,
-  entities: ["src/entity/*.*"],
 };
 
 export default config;
