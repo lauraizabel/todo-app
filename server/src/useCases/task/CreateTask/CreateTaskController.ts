@@ -4,7 +4,7 @@ import CreateTaskUseCase from "./CreateTaskUseCase";
 export default class CreateTaskController {
   constructor(private createTaskUseCase: CreateTaskUseCase) {}
 
-  async handle(request: Request, response: Response): Promise<Response> {
+  handle = async (request: Request, response: Response): Promise<Response> => {
     const { description, userId, categoryId } = request.body;
 
     try {
@@ -16,5 +16,5 @@ export default class CreateTaskController {
         message: error.message || "Unexpected error.",
       });
     }
-  }
+  };
 }

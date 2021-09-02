@@ -5,6 +5,9 @@ import deleteCategoryController from "../useCases/category/DeleteCategory";
 import updateCategoryController from "../useCases/category/UpdateCategory";
 import createTaskController from "../useCases/task/CreateTask";
 import deleteTaskController from "../useCases/task/DeleteTask";
+import getAllTaskController from "../useCases/task/GetAllTask";
+import getOneTaskController from "../useCases/task/GetOneTask";
+import updateTaskController from "../useCases/task/UpdateTask";
 import updateUserController from "../useCases/user/UpdateUser";
 
 const router = Router();
@@ -19,8 +22,8 @@ router.delete("/category/:id", deleteCategoryController.handle);
 
 router.post("/task", createTaskController.handle);
 router.delete("/task/:id", deleteTaskController.handle);
-router.get("/tasks");
-router.get("/task/:id");
-router.put("/task/:id");
+router.get("/tasks", getAllTaskController.handle);
+router.get("/task/:id", getOneTaskController.handle);
+router.put("/task/:id", updateTaskController.handle);
 
 export default router;

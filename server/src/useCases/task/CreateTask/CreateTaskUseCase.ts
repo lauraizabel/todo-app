@@ -10,11 +10,11 @@ export default class CreateTaskUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  public async execute(
+  execute = async (
     description: string,
     userId: string,
     categoryId: string
-  ): Promise<void> {
+  ): Promise<void> => {
     const user = await this.userRepository.findById(Number(userId));
     if (!user) {
       throw new Error("User not found");
@@ -31,5 +31,5 @@ export default class CreateTaskUseCase {
     task.description = description;
 
     await this.taskRepository.create(task);
-  }
+  };
 }
