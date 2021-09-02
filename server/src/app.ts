@@ -4,6 +4,8 @@ import "dotenv/config";
 import { createConnection } from "typeorm";
 import config from "./database/config";
 import publicRoutes from "./routes/publicRoutes";
+import privateRoutes from "./routes/privateRoutes";
+
 const app = express();
 
 app.use(cors());
@@ -25,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use(publicRoutes);
-
+app.use(privateRoutes);
 const PORT = process.env.PORT || 3080;
 
 createConnection(config)
