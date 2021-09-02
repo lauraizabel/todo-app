@@ -23,8 +23,8 @@ export class Task {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  done = false;
+  @Column({ default: false })
+  done: boolean;
 
   @ManyToOne(() => User, () => Task)
   user: User;

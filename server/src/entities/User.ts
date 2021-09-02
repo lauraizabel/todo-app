@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Task } from "./Task";
-
+import { Category } from "./Category";
 @Entity({ name: "user" })
 export class User {
   @PrimaryGeneratedColumn()
@@ -30,4 +30,7 @@ export class User {
 
   @OneToMany(() => Task, () => User)
   tasks: Task[];
+
+  @OneToMany(() => Category, () => User)
+  categories: Category[];
 }
