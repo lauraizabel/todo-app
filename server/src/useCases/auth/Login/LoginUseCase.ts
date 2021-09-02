@@ -7,7 +7,7 @@ export default class LoginUseCase {
   constructor(private userRepository: IUserRepository) {}
 
   execute = async (email: string, password: string): Promise<LoginReturn> => {
-    const user = await this.userRepository.findByEmailAndPassword(email);
+    const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
       throw new Error("User not found");

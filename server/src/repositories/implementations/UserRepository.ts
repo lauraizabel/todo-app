@@ -25,6 +25,10 @@ export default class UserRepository implements IUserRepository {
     const user = await getRepository(User).findOne({ email });
     return user ? user : null;
   }
+  async findById(id: number): Promise<User | null> {
+    const user = await getRepository(User).findOne({ id });
+    return user ? user : null;
+  }
 
   async update(user: User): Promise<User> {
     await getRepository(User).update({ email: user.email }, user);
