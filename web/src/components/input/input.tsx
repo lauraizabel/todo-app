@@ -11,6 +11,7 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   required?: boolean;
+  name?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   label,
   placeholder,
   required = false,
+  name = "",
 }: InputProps) => {
   return (
     <Container>
@@ -31,6 +33,7 @@ const Input: React.FC<InputProps> = ({
         variant="outlined"
         placeholder={placeholder}
         required={required}
+        name={name}
       />
     </Container>
   );
