@@ -19,7 +19,29 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/no-unresolved": "error"
+    "import/no-unresolved": "error",
+    "prettier/prettier": [
+      1,
+      {
+        "singleQuote": false
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
   },
   "settings": {
     "import/resolver": {
