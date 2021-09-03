@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../../../../components/button";
-import Input from "../../../../components/input";
+import Button from "../../../../components/button/button";
+import Input from "../../../../components/input/input";
 
 import { Container, ContainerFields, ContainerButtons } from "./styles";
 

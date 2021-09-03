@@ -3,7 +3,6 @@ import ButtonMui from "@material-ui/core/Button";
 import { Container } from "./styles";
 
 interface ButtonProps {
-  title?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   variant?: "text" | "outlined" | "contained";
@@ -12,7 +11,6 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   onClick = () => {},
-  title,
   type = "button",
   children,
   variant = "text",

@@ -10,6 +10,7 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   placeholder?: string;
+  required?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
   value = "",
   label,
   placeholder,
+  required = false,
 }: InputProps) => {
   return (
     <Container>
@@ -28,6 +30,7 @@ const Input: React.FC<InputProps> = ({
         label={label}
         variant="outlined"
         placeholder={placeholder}
+        required={required}
       />
     </Container>
   );
