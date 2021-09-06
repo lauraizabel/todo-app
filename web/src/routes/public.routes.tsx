@@ -24,6 +24,7 @@ const PublicRoutes: React.FC = () => {
           exact={route.exact}
           path={route.path}
           component={route.component}
+          key={route.path}
         />
       ))}
     </>
