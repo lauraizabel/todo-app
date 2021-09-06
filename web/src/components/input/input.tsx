@@ -34,6 +34,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         required={required}
         name={name}
+        color="primary"
       />
     </Container>
   );

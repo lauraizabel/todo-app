@@ -7,3 +7,9 @@ export const ContainerFields = styled.div`
 `;
 
 export const ContainerButtons = styled.div``;
+
+export const Error = styled.div`
+  margin: 20px 0;
+  color: red;
+  text-align: center;
+`;

@@ -5,6 +5,7 @@ const Errors = {
   email: "E-mail inválido",
   password: "Senha inválida",
   confirmPassword: "As senhas não conferem",
+  default: "Erro desconhecido. Tente novamente.",
 };
 
 export default Errors;

@@ -1,16 +1,21 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import LoginType from "../../../../@types/loginType";
 import Button from "../../../../components/button/button";
 import Input from "../../../../components/input/input";
 import { login } from "../../../../services/rest/user/userRest";
+import LoginErrors from "./login-errors";
 
-import { Container, ContainerFields, ContainerButtons } from "./styles";
+import { Container, ContainerFields, ContainerButtons, Error } from "./styles";
 
 const Form: React.FC = () => {
+  const [error, setError] = useState<string>("");
   const [formValues, setFormValues] = useState<LoginType>({
     email: "",
     password: "",
   });
+
+  const history = useHistory();
 
   const onChangeValues = (value: string, name: "email" | "password") => {
     setFormValues({ ...formValues, [name]: value });
@@ -20,10 +25,14 @@ const Form: React.FC = () => {
     try {
       e.preventDefault();
       await login(formValues.email, formValues.password);
-      alert("tudo certo :)");
-    } catch (error) {
-      // eslint-disable-next-line no-alert
-      alert("algo deu errado");
+      history.push("/home");
+    } catch (err: any) {
+      const { message } = err.response.data;
+      const mesageError =
+        LoginErrors[message as keyof typeof LoginErrors] ||
+        "Algo de errado aconteceu. Tente novamente.";
+
+      setError(mesageError);
     }
   };
 
@@ -49,6 +58,7 @@ const Form: React.FC = () => {
           value={formValues.password}
         />
       </ContainerFields>
+      <Error>{error}</Error>
       <ContainerButtons>
         <Button variant="contained" type="submit">
           Entrar

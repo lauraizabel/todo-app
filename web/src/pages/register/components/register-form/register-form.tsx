@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
-import { ValidationError } from "yup";
 import Input from "../../../../components/input/input";
 import Button from "../../../../components/button/button";
 import {
@@ -13,7 +12,7 @@ import {
 } from "./styles";
 import RegisterType from "../../../../@types/registerType";
 import { register } from "../../../../services/rest/user/userRest";
-import Errors from "../../../../errors/errors";
+import Errors from "./register-errors";
 
 const RegisterForm: React.FC = () => {
   const [formValues, setFormValues] = useState<RegisterType>({
@@ -23,7 +22,7 @@ const RegisterForm: React.FC = () => {
     lastName: "",
     password: "",
   });
-  const [errors, setErrors] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const history = useHistory();
 
   const onChangeValues = (
@@ -43,16 +42,19 @@ const RegisterForm: React.FC = () => {
         email: yup.string().email().required(),
         firstName: yup.string().required(),
         lastName: yup.string().required(),
-        password: yup.string().required(),
-        confirmPassword: yup.string().required(),
+        password: yup.string().required().min(6),
+        confirmPassword: yup
+          .string()
+          .required()
+          .min(6)
+          .oneOf([yup.ref("password")], "As senhas não conferem"),
       });
 
-      const isValid = await schema.validateSync(formValues);
-      console.log(isValid);
+      await schema.validateSync(formValues);
       // await register(formValues);
-      // history.push("/");
-    } catch (error: any) {
-      setErrors(Errors[error.path]);
+      history.push("/");
+    } catch (err: any) {
+      setError(Errors[(err.path as keyof typeof Errors) ?? "default"]);
     }
   };
 
@@ -98,7 +100,7 @@ const RegisterForm: React.FC = () => {
         />
       </ContainerDoubleFields>
       <ContainerButton>
-        <h5>{errors}</h5>
+        <h5 className="error">{error}</h5>
         <Button variant="contained" type="submit">
           Cadastrar
         </Button>

@@ -17,12 +17,12 @@ export const ContainerBackground = styled.div`
 `;
 
 export const ContainerLogin = styled.div`
-  min-width: 400px;
+  min-width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #7bdff2;
+  background-color: #2e038c;
 `;
 
 export const ContainerTitles = styled.div`

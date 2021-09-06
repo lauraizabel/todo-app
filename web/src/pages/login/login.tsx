@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../components/layout/layout";
-import Form from "./components/form/formLogin";
+import Form from "./components/form/form-login";
 
 import { ContainerTitles, ContainerForm, NoAccount } from "./styles";
 
