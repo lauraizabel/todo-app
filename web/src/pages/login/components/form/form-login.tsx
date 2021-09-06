@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import LoginType from "../../../../@types/loginType";
 import Button from "../../../../components/button/button";
 import Input from "../../../../components/input/input";
+import { saveAuthData } from "../../../../services/auth";
 import { login } from "../../../../services/rest/user/userRest";
 import LoginErrors from "./login-errors";
 
@@ -24,7 +25,8 @@ const Form: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      await login(formValues.email, formValues.password);
+      const { data } = await login(formValues.email, formValues.password);
+      saveAuthData(data);
       history.push("/home");
     } catch (err: any) {
       const { message } = err.response.data;

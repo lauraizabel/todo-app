@@ -1,12 +1,8 @@
 import RegisterType from "../../../@types/registerType";
 import api from "../../api";
-import { AuthDataType } from "../../auth";
 
-export const login = async (
-  email: string,
-  password: string
-): Promise<AuthDataType> => {
-  const data: AuthDataType = await api.post("/login", { email, password });
+export const login = async (email: string, password: string): Promise<any> => {
+  const data = await api.post("/login", { email, password });
   return data;
 };
 

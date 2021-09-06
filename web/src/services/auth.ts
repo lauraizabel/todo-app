@@ -20,7 +20,7 @@ export function getAuthData(): AuthDataType | null | any {
 }
 
 export function saveAuthData(user: AuthDataType): void {
-  localStorage.setItem(key, `${user.token}`);
+  localStorage.setItem(key, `Bearer ${user.token}`);
 }
 
 export function removeAuthData(): void {
