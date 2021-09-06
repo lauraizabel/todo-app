@@ -9,16 +9,17 @@ interface AuthenticatedRouteProps {
   exact: boolean;
 }
 
-const AuthenticatedRoute: React.FC<AuthenticatedRouteProps> = ({
-  component: children,
+const PrivateRoute: React.FC<AuthenticatedRouteProps> = ({
+  component: Component,
   path,
   exact,
-}: AuthenticatedRouteProps) =>
-  isAuthenticated() ? (
-    <Redirect to="/" />
-  ) : (
-    <Route path={path} exact={exact} component={children} />
-  );
+}) => (
+  <Route
+    path={path}
+    exact={exact}
+    render={() => (isAuthenticated() ? <Component /> : <Redirect to="/" />)}
+  />
+);
 
 const PrivateRoutes: React.FC = () => {
   const routes = [
@@ -32,7 +33,7 @@ const PrivateRoutes: React.FC = () => {
   return (
     <>
       {routes.map((route) => (
-        <AuthenticatedRoute
+        <PrivateRoute
           path={route.path}
           component={route.component}
           exact={route.exact}
