@@ -10,7 +10,7 @@ import {
   ContainerButton,
   HaveAccount,
 } from "./styles";
-import RegisterType from "../../../../@types/registerType";
+import RegisterType from "../../../../@types/register-type";
 import { register } from "../../../../services/rest/user/userRest";
 import Errors from "./register-errors";
 
@@ -51,7 +51,7 @@ const RegisterForm: React.FC = () => {
       });
 
       await schema.validateSync(formValues);
-      // await register(formValues);
+      await register(formValues);
       history.push("/");
     } catch (err: any) {
       setError(Errors[(err.path as keyof typeof Errors) ?? "default"]);

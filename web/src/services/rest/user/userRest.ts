@@ -1,4 +1,4 @@
-import RegisterType from "../../../@types/registerType";
+import RegisterType from "../../../@types/register-type";
 import api from "../../api";
 
 export const login = async (email: string, password: string): Promise<any> => {

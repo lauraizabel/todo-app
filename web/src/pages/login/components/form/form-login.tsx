@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import LoginType from "../../../../@types/loginType";
+import LoginType from "../../../../@types/login-type";
 import Button from "../../../../components/button/button";
 import Input from "../../../../components/input/input";
 import { saveAuthData } from "../../../../services/auth";
