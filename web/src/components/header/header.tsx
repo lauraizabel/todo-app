@@ -5,8 +5,7 @@ import { Container } from "./styles";
 const Header: React.FC = () => {
   return (
     <Container>
-      <h2>TODO</h2>
-      alo
+      <h2>Todo</h2>
     </Container>
   );
 };

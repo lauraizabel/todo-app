@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../../components/header/header";
+import LayoutPrivate from "../../components/layout-private/layout-private";
 
 // import { Container } from './styles';
 
 const Home: React.FC = () => {
-  return <Header />;
+  return <LayoutPrivate />;
 };
 
 export default Home;
