@@ -4,7 +4,7 @@ import LoginType from "../../../../@types/login-type";
 import Button from "../../../../components/button/button";
 import Input from "../../../../components/input/input";
 import { saveAuthData } from "../../../../services/auth";
-import { login } from "../../../../services/rest/user/userRest";
+import { login } from "../../../../services/rest/user/user-rest";
 import LoginErrors from "./login-errors";
 
 import { Container, ContainerFields, ContainerButtons, Error } from "./styles";

@@ -11,7 +11,7 @@ import {
   HaveAccount,
 } from "./styles";
 import RegisterType from "../../../../@types/register-type";
-import { register } from "../../../../services/rest/user/userRest";
+import { register } from "../../../../services/rest/user/user-rest";
 import Errors from "./register-errors";
 
 const RegisterForm: React.FC = () => {
