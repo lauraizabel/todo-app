@@ -18,13 +18,20 @@ export default class UpdateTaskUseCase {
       throw new Error("Task not found");
     }
 
-    const category = await this.categoryRepository.findById(Number(categoryId));
-    if (!category) {
-      throw new Error("Category not found");
+    if (categoryId) {
+      const category = await this.categoryRepository.findById(
+        Number(categoryId)
+      );
+
+      if (!category) {
+        throw new Error("Category not found");
+      }
+      oldTask.category = category;
     }
 
     oldTask.done = done;
-    oldTask.description = description;
+
+    oldTask.description = description || oldTask.description;
 
     await this.taskRepository.update(oldTask);
   };
