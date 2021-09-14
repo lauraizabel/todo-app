@@ -16,19 +16,24 @@ export default class CreateTaskUseCase {
     categoryId: string
   ): Promise<void> => {
     const user = await this.userRepository.findById(Number(userId));
+
     if (!user) {
       throw new Error("User not found");
     }
 
-    const category = await this.categoryRepository.findById(Number(categoryId));
-    if (!category) {
-      throw new Error("Category not found");
-    }
-
     const task = new Task();
-    task.category = category;
     task.user = user;
     task.description = description;
+
+    if (categoryId) {
+      const category = await this.categoryRepository.findById(
+        Number(categoryId)
+      );
+      if (!category) {
+        throw new Error("Category not found");
+      }
+      task.category = category;
+    }
 
     await this.taskRepository.create(task);
   };
