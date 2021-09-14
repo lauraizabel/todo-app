@@ -4,13 +4,19 @@ import Button from "../button/button";
 
 import { Container } from "./styles";
 
-const NoContent: React.FC = () => {
+interface NoContentProps {
+  onClick?: () => void;
+}
+
+const NoContent: React.FC<NoContentProps> = ({ onClick = () => {} }) => {
   return (
     <Container>
       <BiSad size={100} />
       <p className="top-line">Não há conteúdo para exibir.</p>
       <p>Deseja adicionar?</p>
-      <Button variant="contained">Adicionar</Button>
+      <Button variant="contained" onClick={onClick}>
+        Adicionar
+      </Button>
     </Container>
   );
 };

@@ -8,9 +8,11 @@ import { editTask, fetchTasks } from "../../services/rest/task/task-rest";
 
 import { Container, ContainerInside } from "./styles";
 import NoContent from "../../components/no-content/no-content";
+import Modal from "../../components/modal/modal";
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const { isLoading, setLoading } = useLoadingContext();
 
   const fetchAllTasks = async () => {
@@ -32,16 +34,23 @@ const Home: React.FC = () => {
     fetchAllTasks();
   }, []);
 
+  const toggleModal = () => setOpenModal(!openModal);
+
   return (
     <LayoutPrivate>
       <Container>
-        {!isLoading && tasks.length === 0 && <NoContent />}
+        {!isLoading && tasks.length === 0 && (
+          <NoContent onClick={toggleModal} />
+        )}
 
         <ContainerInside>
           {tasks.map((task) => (
             <CardTask task={task} key={task.id} doneTask={makeDone} />
           ))}
         </ContainerInside>
+        <Modal open={openModal} onClose={toggleModal}>
+          <h1>My Modal :)</h1>
+        </Modal>
       </Container>
     </LayoutPrivate>
   );
