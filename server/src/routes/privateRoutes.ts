@@ -16,6 +16,7 @@ router.use(isAuthenticated);
 
 router.put("/user", updateUserController.handle);
 
+router.get("/categories");
 router.post("/category", createCategoryController.handle);
 router.put("/category/:id", updateCategoryController.handle);
 router.delete("/category/:id", deleteCategoryController.handle);

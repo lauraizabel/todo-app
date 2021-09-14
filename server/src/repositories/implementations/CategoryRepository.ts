@@ -20,4 +20,9 @@ export default class CategoryRepository implements ICategoryRepository {
     await getRepository(Category).update({ id: category.id }, category);
     return category;
   }
+
+  async getAll(): Promise<Category[]> {
+    const categories = await getRepository(Category).find();
+    return categories;
+  }
 }
