@@ -1,3 +1,5 @@
+import { setUserId } from "./localStorage";
+
 const key = "@token";
 
 export interface AuthDataType {
@@ -21,6 +23,7 @@ export function getAuthData(): AuthDataType | null | any {
 
 export function saveAuthData(user: AuthDataType): void {
   localStorage.setItem(key, `${user.token}`);
+  setUserId(user.id.toString());
 }
 
 export function removeAuthData(): void {

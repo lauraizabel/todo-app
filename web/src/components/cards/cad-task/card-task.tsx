@@ -17,7 +17,7 @@ const CardTask: React.FC<CardTaskProps> = ({ doneTask, task }) => {
         <span>{task.description}</span>
       </ContainerDescription>
       <ContainerDone>
-        <Checkbox checked={task.done} onClick={() => doneTask(task.id)} />
+        <Checkbox checked={task.done} onClick={() => doneTask(task?.id ?? 0)} />
       </ContainerDone>
     </Container>
   );

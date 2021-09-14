@@ -11,7 +11,7 @@ const SIZE_ICON = 24;
 const Menu: React.FC = () => {
   const listContent = [
     {
-      title: "Todo's",
+      title: "Task's",
       icon: <BsCardList size={SIZE_ICON} />,
       link: "/home",
     },

@@ -19,14 +19,13 @@ export const ModalWrapper = styled.div`
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   position: relative;
   z-index: 10;
   border-radius: 10px;
 `;
 
 export const ModalContent = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

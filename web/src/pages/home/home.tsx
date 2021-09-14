@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+
 import { useLoadingContext } from "../../contexts/loading-context/loading-context";
 
 import { Task } from "../../@types/task-type";
 import CardTask from "../../components/cards/cad-task/card-task";
 import LayoutPrivate from "../../components/layout-private/layout-private";
-import { editTask, fetchTasks } from "../../services/rest/task/task-rest";
+import {
+  createTask,
+  editTask,
+  fetchTasks,
+} from "../../services/rest/task/task-rest";
 
 import { Container, ContainerInside } from "./styles";
 import NoContent from "../../components/no-content/no-content";
 import Modal from "../../components/modal/modal";
+import FormTask from "./components/form-task/form-task";
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -16,6 +23,7 @@ const Home: React.FC = () => {
   const { isLoading, setLoading } = useLoadingContext();
 
   const fetchAllTasks = async () => {
+    setLoading(true);
     const data = await fetchTasks();
     setTasks(data);
     setLoading(false);
@@ -30,11 +38,26 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
     fetchAllTasks();
   }, []);
 
-  const toggleModal = () => setOpenModal(!openModal);
+  const toggleModal = () => {
+    setOpenModal(!openModal);
+    fetchAllTasks();
+  };
+
+  const newTask = async (task: Task) => {
+    try {
+      await createTask(task);
+    } catch (error: any) {
+      console.log(error);
+      await Swal.fire({
+        title: "Erro ao criar tarefa",
+        text: error?.message,
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <LayoutPrivate>
@@ -49,7 +72,7 @@ const Home: React.FC = () => {
           ))}
         </ContainerInside>
         <Modal open={openModal} onClose={toggleModal}>
-          <h1>My Modal :)</h1>
+          <FormTask onSubmit={newTask} />
         </Modal>
       </Container>
     </LayoutPrivate>
