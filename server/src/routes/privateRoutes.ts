@@ -2,6 +2,7 @@ import { Router } from "express";
 import isAuthenticated from "../middleware/isAuthenticated";
 import createCategoryController from "../useCases/category/CreateCategory";
 import deleteCategoryController from "../useCases/category/DeleteCategory";
+import getAllCategoriesController from "../useCases/category/GetAllCategories";
 import updateCategoryController from "../useCases/category/UpdateCategory";
 import createTaskController from "../useCases/task/CreateTask";
 import deleteTaskController from "../useCases/task/DeleteTask";
@@ -16,7 +17,7 @@ router.use(isAuthenticated);
 
 router.put("/user", updateUserController.handle);
 
-router.get("/categories");
+router.get("/categories", getAllCategoriesController.handle);
 router.post("/category", createCategoryController.handle);
 router.put("/category/:id", updateCategoryController.handle);
 router.delete("/category/:id", deleteCategoryController.handle);
