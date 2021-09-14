@@ -23,7 +23,8 @@
     "prettier/prettier": [
       1,
       {
-        "singleQuote": false
+        "singleQuote": false,
+        "endOfLine": "auto"
       }
     ],
     "import/extensions": [
