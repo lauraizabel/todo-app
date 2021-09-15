@@ -12,7 +12,7 @@ import {
   fetchCategories,
 } from "../../services/rest/category/rest-category";
 import Modal from "../../components/modal/modal";
-import FormCategory from "./form-category/form-category";
+import FormCategory from "./components/form-category/form-category";
 
 const Categories: React.FC = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);

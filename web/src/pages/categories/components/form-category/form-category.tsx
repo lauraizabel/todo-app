@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CategoryType } from "../../../@types/category-type";
-import Button from "../../../components/button/button";
-import Input from "../../../components/input/input";
+import { CategoryType } from "../../../../@types/category-type";
+import Button from "../../../../components/button/button";
+import Input from "../../../../components/input/input";
 
 import { Container } from "./styles";
 
