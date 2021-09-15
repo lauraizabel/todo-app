@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useLoadingContext } from "../../contexts/loading-context/loading-context";
 
 import { Task } from "../../@types/task-type";
-import CardTask from "../../components/cards/cad-task/card-task";
+import CardTask from "../../components/cards/card-task/card-task";
 import LayoutPrivate from "../../components/layout-private/layout-private";
 import {
   createTask,
