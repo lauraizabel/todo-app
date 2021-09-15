@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import Categories from "../pages/categories/categories";
 import Home from "../pages/home/home";
 import Login from "../pages/login/login";
 import Register from "../pages/register/register";
@@ -21,6 +22,12 @@ const Routes = () => {
     {
       path: "/home",
       component: Home,
+      exact: true,
+      isPrivate: true,
+    },
+    {
+      path: "/categories",
+      component: Categories,
       exact: true,
       isPrivate: true,
     },

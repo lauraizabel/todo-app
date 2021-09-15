@@ -48,7 +48,7 @@ const FormTask: React.FC<FormTaskProps> = ({ onSubmit }) => {
         label="Selecione a categoria da tarefa"
       />
       <Button variant="contained" type="submit">
-        Cadastrar tarefa
+        Salvar tarefa
       </Button>
     </Container>
   );
