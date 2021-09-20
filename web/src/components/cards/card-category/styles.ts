@@ -5,10 +5,20 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #f2e8d5;
-  padding: 8px;
+  padding: 12px;
   border-radius: 4px;
+  color: #260273;
+  font-weight: 600;
 `;
 
 export const ContainerDescription = styled.div``;
 
-export const ContainerDone = styled.div``;
+export const ContainerEdit = styled.div``;
+
+export const ContainerDelete = styled.div``;
+
+export const ContainerButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

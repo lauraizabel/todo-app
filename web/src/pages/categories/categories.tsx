@@ -2,17 +2,22 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useLoadingContext } from "../../contexts/loading-context/loading-context";
 
-import { CategoryType } from "../../@types/category-type";
 import LayoutPrivate from "../../components/layout-private/layout-private";
-
-import { Container } from "./styles";
 import NoContent from "../../components/no-content/no-content";
-import {
-  createCategory,
-  fetchCategories,
-} from "../../services/rest/category/rest-category";
 import Modal from "../../components/modal/modal";
 import FormCategory from "./components/form-category/form-category";
+import CardCategory from "../../components/cards/card-category/card-category";
+
+import {
+  createCategory,
+  deleteCategory,
+  fetchCategories,
+} from "../../services/rest/category/rest-category";
+
+import { CategoryType } from "../../@types/category-type";
+
+import { Container, ContainerInside } from "./styles";
+import AlertHelper from "../../utils/alert-helper";
 
 const Categories: React.FC = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -51,7 +56,32 @@ const Categories: React.FC = () => {
     } catch (error: any) {
       setLoading(false);
       Swal.fire({
-        title: "Ocorreu um erro ao salvar a categoria",
+        title: AlertHelper.errorGenericTitle,
+        text: error.message,
+        icon: "error",
+      });
+    }
+  };
+
+  const handleDeleteCategory = async (id: number) => {
+    try {
+      const sureDelete = await Swal.fire({
+        title: AlertHelper.confirmDeleteTitle,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: AlertHelper.confirmTextButton,
+        cancelButtonText: AlertHelper.cancelTextButton,
+      });
+
+      if (sureDelete.isDismissed) return;
+
+      setLoading(true);
+      await deleteCategory(id);
+      getCategories();
+    } catch (error: any) {
+      setLoading(false);
+      Swal.fire({
+        title: AlertHelper.errorGenericTitle,
         text: error.message,
         icon: "error",
       });
@@ -68,6 +98,15 @@ const Categories: React.FC = () => {
         {!isLoading && categories.length === 0 && (
           <NoContent onClick={toggleModal} />
         )}
+        <ContainerInside>
+          {categories.map((category: CategoryType) => (
+            <CardCategory
+              key={category.id}
+              category={category}
+              handleDelete={handleDeleteCategory}
+            />
+          ))}
+        </ContainerInside>
         <Modal open={openModal} onClose={toggleModal}>
           <FormCategory handleSubmit={handleSaveCategory} />
         </Modal>

@@ -16,6 +16,7 @@ import { Container, ContainerInside } from "./styles";
 import NoContent from "../../components/no-content/no-content";
 import Modal from "../../components/modal/modal";
 import FormTask from "./components/form-task/form-task";
+import AlertHelper from "../../utils/alert-helper";
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -52,7 +53,7 @@ const Home: React.FC = () => {
     } catch (error: any) {
       console.log(error);
       await Swal.fire({
-        title: "Erro ao criar tarefa",
+        title: AlertHelper.errorGenericTitle,
         text: error?.message,
         icon: "error",
       });

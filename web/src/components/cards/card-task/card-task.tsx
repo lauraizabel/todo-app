@@ -11,7 +11,7 @@ interface CardTaskProps {
 
 const CardTask: React.FC<CardTaskProps> = ({ doneTask, task }) => {
   return (
-    <Container>
+    <Container isDone={task.done}>
       <span>{task.id}</span>
       <ContainerDescription>
         <span>{task.description}</span>

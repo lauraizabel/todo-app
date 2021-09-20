@@ -10,3 +10,7 @@ export const fetchCategories = async () => {
 export const createCategory = async (category: CategoryType) => {
   await api.post("/category", { ...category, userId: getUserId() });
 };
+
+export const deleteCategory = async (id: number) => {
+  await api.delete(`/category/${id}`);
+};
