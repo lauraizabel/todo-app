@@ -56,7 +56,8 @@ const Categories: React.FC = () => {
     } catch (error: any) {
       setLoading(false);
       Swal.fire({
-        title: AlertHelper.errorGenericTitle,
+        title: AlertHelper.AlertTextError.errorGenericTitle,
+
         text: error.message,
         icon: "error",
       });
@@ -66,11 +67,11 @@ const Categories: React.FC = () => {
   const handleDeleteCategory = async (id: number) => {
     try {
       const sureDelete = await Swal.fire({
-        title: AlertHelper.confirmDeleteTitle,
+        title: AlertHelper.AlertTextConfirm.confirmDeleteTitle,
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: AlertHelper.confirmTextButton,
-        cancelButtonText: AlertHelper.cancelTextButton,
+        confirmButtonText: AlertHelper.AlertTextConfirm.confirmTextButton,
+        cancelButtonText: AlertHelper.AlertGeneric.cancelTextButton,
       });
 
       if (sureDelete.isDismissed) return;
@@ -81,7 +82,7 @@ const Categories: React.FC = () => {
     } catch (error: any) {
       setLoading(false);
       Swal.fire({
-        title: AlertHelper.errorGenericTitle,
+        title: AlertHelper.AlertTextError.errorGenericTitle,
         text: error.message,
         icon: "error",
       });

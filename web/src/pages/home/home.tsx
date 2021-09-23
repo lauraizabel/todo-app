@@ -53,7 +53,7 @@ const Home: React.FC = () => {
     } catch (error: any) {
       console.log(error);
       await Swal.fire({
-        title: AlertHelper.errorGenericTitle,
+        title: AlertHelper.AlertTextError.errorGenericTitle,
         text: error?.message,
         icon: "error",
       });
